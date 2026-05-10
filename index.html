@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feliz Dia das Mães 💐</title>
+    <meta name="description" content="Uma homenagem especial para o Dia das Mães. Clique e descubra uma surpresa linda!" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="src/styles/reset.css" />
+    <link rel="stylesheet" href="src/styles/principal.css" />
+  </head>
+
+  <body>
+    <!-- TELA INICIAL -->
+    <section id="landing" class="landing">
+      <canvas id="bgCanvas"></canvas>
+      <div class="landing__content">
+        <div class="landing__icon">💐</div>
+        <h1 class="landing__title">Feliz Dia das Mães</h1>
+        <p class="landing__subtitle">Uma homenagem especial para a pessoa mais importante da minha vida</p>
+        <button id="btnSurprise" class="landing__btn">
+          <span class="landing__btn-text">Abrir Surpresa</span>
+          <span class="landing__btn-icon">💝</span>
+        </button>
+      </div>
+      <div class="landing__floating-hearts" id="floatingHearts"></div>
+    </section>
+
+    <!-- ANIMAÇÃO DE TRANSIÇÃO -->
+    <div id="transitionOverlay" class="transition-overlay">
+      <canvas id="animationCanvas"></canvas>
+      <div class="transition-message" id="transitionMessage">
+        <span class="transition-heart">❤️</span>
+        <p class="transition-text">Para a melhor mãe do mundo</p>
+      </div>
+    </div>
+
+    <!-- GALERIA DE FOTOS -->
+    <section id="gallery" class="gallery">
+      <div class="gallery__header">
+        <h2 class="gallery__title">Nossos Momentos</h2>
+        <p class="gallery__subtitle">Cada foto guarda um pedacinho do nosso amor</p>
+        <div class="gallery__divider">
+          <span>💖</span>
+        </div>
+      </div>
+
+      <div class="gallery__grid" id="galleryGrid">
+        <!-- As fotos serão adicionadas aqui -->
+        <!-- Exemplo de como adicionar fotos:
+        <div class="gallery__item">
+          <img src="src/assets/foto1.jpg" alt="Descrição da foto" />
+          <div class="gallery__item-overlay">
+            <p class="gallery__item-caption">Legenda da foto</p>
+          </div>
+        </div>
+        -->
+      </div>
+
+      <div class="gallery__empty" id="galleryEmpty">
+        <div class="gallery__empty-icon">📸</div>
+        <p class="gallery__empty-text">As fotos serão adicionadas em breve!</p>
+        <p class="gallery__empty-hint">Adicione imagens na pasta <code>src/assets/</code> e configure no código</p>
+      </div>
+
+      <footer class="gallery__footer">
+        <p>Feito com <span class="heart-beat">❤️</span> para você, mãe!</p>
+      </footer>
+    </section>
+
+    <script src="src/scripts/scripts.js" defer></script>
+  </body>
+</html>
