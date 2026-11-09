@@ -3,73 +3,313 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Feliz Dia das Mães 💐</title>
-    <meta name="description" content="Uma homenagem especial para o Dia das Mães. Clique e descubra uma surpresa linda!" />
+    <title>Feliz Aniversário, Maristela! 🎂💐 Com todo meu amor</title>
+    <meta
+      name="description"
+      content="Uma homenagem muito especial de aniversário para a melhor mãe do mundo: Maristela. Clique para abrir uma linda surpresa!"
+    />
+    <meta name="theme-color" content="#1a0a16" />
+
+    <!-- Open Graph (WhatsApp, redes sociais) -->
+    <meta property="og:title" content="Feliz Aniversário, Maristela! 🎂✨" />
+    <meta
+      property="og:description"
+      content="Uma surpresa cheia de amor, carinho e memórias inesquecíveis preparada para a melhor mãe do universo!"
+    />
+    <meta property="og:type" content="website" />
+
+    <!-- Favicon com bolo de aniversário -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎂</text></svg>"
+    />
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="src/styles/reset.css" />
     <link rel="stylesheet" href="src/styles/principal.css" />
   </head>
 
   <body>
-    <!-- TELA INICIAL -->
+    <!-- CONTROLE DE MÚSICA FLUTUANTE -->
+    <div class="music-player" id="musicPlayer" title="Música de Fundo">
+      <button class="music-player__btn" id="btnMusic" aria-label="Controlar Música">
+        <span class="music-player__icon" id="musicIcon">🎵</span>
+        <span class="music-player__bars" id="musicBars">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </span>
+        <span class="music-player__text" id="musicStatus">Melodia de Aniversário</span>
+      </button>
+    </div>
+
+    <!-- BOTÃO FLUTUANTE PARA JOGAR CONFETES -->
+    <button class="confetti-fab" id="btnConfettiFab" aria-label="Jogar Confetes" title="Celebrar com Confetes!">
+      <span>🎉</span>
+      <span class="confetti-fab__label">Celebrar!</span>
+    </button>
+
+    <!-- TELA INICIAL (LANDING PAGE) -->
     <section id="landing" class="landing">
       <canvas id="bgCanvas"></canvas>
+      <div class="landing__floating-elements" id="floatingElements"></div>
+
       <div class="landing__content">
-        <div class="landing__icon">💐</div>
-        <h1 class="landing__title">Feliz Dia das Mães</h1>
-        <p class="landing__subtitle">Uma homenagem especial para a pessoa mais importante da minha vida</p>
+        <div class="landing__badge">
+          <span class="badge__sparkle">✨</span>
+          <span>HOJE É O SEU DIA ESPECIAL</span>
+          <span class="badge__sparkle">✨</span>
+        </div>
+
+        <div class="landing__icon-wrapper">
+          <div class="landing__icon-halo"></div>
+          <div class="landing__icon">🎂</div>
+        </div>
+
+        <h1 class="landing__title">
+          Feliz Aniversário, <br />
+          <span class="landing__title-highlight">Maristela!</span>
+        </h1>
+
+        <p class="landing__subtitle">
+          Hoje o dia amanheceu mais radiante para comemorar a vida da pessoa mais maravilhosa, guerreira e amada do
+          mundo: a minha mãe.
+        </p>
+
         <button id="btnSurprise" class="landing__btn">
-          <span class="landing__btn-text">Abrir Surpresa</span>
-          <span class="landing__btn-icon">💝</span>
+          <span class="landing__btn-text">Abrir Meu Presente</span>
+          <span class="landing__btn-icon">🎁</span>
         </button>
+
+        <p class="landing__hint">Toque no botão para revelar sua surpresa especial ❤️</p>
       </div>
-      <div class="landing__floating-hearts" id="floatingHearts"></div>
     </section>
 
-    <!-- ANIMAÇÃO DE TRANSIÇÃO -->
+    <!-- ANIMAÇÃO DE TRANSIÇÃO (FOGOS E CONFETES) -->
     <div id="transitionOverlay" class="transition-overlay">
       <canvas id="animationCanvas"></canvas>
       <div class="transition-message" id="transitionMessage">
-        <span class="transition-heart">❤️</span>
-        <p class="transition-text">Para a melhor mãe do mundo</p>
+        <div class="transition-icon">🎂</div>
+        <h2 class="transition-title">Viva a Maristela! 🎉</h2>
+        <p class="transition-text">Para a mulher mais extraordinária, amorosa e inspiradora do universo!</p>
+        <div class="transition-stars">✨ 💖 ✨ 💖 ✨</div>
       </div>
     </div>
 
-    <!-- GALERIA DE FOTOS -->
-    <section id="gallery" class="gallery">
-      <div class="gallery__header">
-        <h2 class="gallery__title">Nossos Momentos</h2>
-        <p class="gallery__subtitle">Cada foto guarda um pedacinho do nosso amor</p>
-        <div class="gallery__divider">
-          <span>💖</span>
-        </div>
-      </div>
-
-      <div class="gallery__grid" id="galleryGrid">
-        <!-- As fotos serão adicionadas aqui -->
-        <!-- Exemplo de como adicionar fotos:
-        <div class="gallery__item">
-          <img src="src/assets/foto1.jpg" alt="Descrição da foto" />
-          <div class="gallery__item-overlay">
-            <p class="gallery__item-caption">Legenda da foto</p>
+    <!-- PÁGINA PRINCIPAL DE HOMENAGEM -->
+    <main id="celebration" class="celebration">
+      <!-- HERO CELEBRATION -->
+      <section class="hero-tribute">
+        <div class="hero-tribute__container">
+          <span class="hero-tribute__tag">🌸 COM TODO MEU AMOR 🌸</span>
+          <h2 class="hero-tribute__title">Parabéns pelo Seu Dia, Mãe!</h2>
+          <p class="hero-tribute__subtitle">
+            Celebrando a sua vida, a sua história, o seu sorriso contagiante e cada bênção de ter você comigo.
+          </p>
+          <div class="hero-tribute__divider">
+            <span>✨</span>
+            <span class="heart-beat">💖</span>
+            <span>✨</span>
           </div>
         </div>
-        -->
+      </section>
+
+      <!-- INTERATIVIDADE: ASSOPRAR AS VELAS DO BOLO -->
+      <section class="interactive-cake">
+        <div class="interactive-cake__card">
+          <h3 class="cake-card__title">Momento dos Parabéns 🎂</h3>
+          <p class="cake-card__subtitle">Feche os olhos, faça um lindo pedido do fundo do coração e assopre as velinhas!</p>
+
+          <div class="cake-visual" id="cakeVisual">
+            <div class="cake-candles" id="cakeCandles">
+              <div class="candle candle--1">
+                <div class="candle__flame" id="flame1"></div>
+                <div class="candle__wick"></div>
+                <div class="candle__stick"></div>
+              </div>
+              <div class="candle candle--2">
+                <div class="candle__flame" id="flame2"></div>
+                <div class="candle__wick"></div>
+                <div class="candle__stick"></div>
+              </div>
+              <div class="candle candle--3">
+                <div class="candle__flame" id="flame3"></div>
+                <div class="candle__wick"></div>
+                <div class="candle__stick"></div>
+              </div>
+            </div>
+            <div class="cake-body">
+              <div class="cake-layer cake-layer--top">
+                <span class="cake-frosting"></span>
+              </div>
+              <div class="cake-layer cake-layer--middle"></div>
+              <div class="cake-layer cake-layer--bottom"></div>
+              <div class="cake-plate"></div>
+            </div>
+          </div>
+
+          <button class="cake-card__btn" id="btnBlowCandles">
+            <span id="blowBtnIcon">💨</span>
+            <span id="blowBtnText">Assoprar as Velas & Fazer um Pedido</span>
+          </button>
+
+          <div class="cake-card__wish" id="cakeWishMessage">
+            <p class="wish__text">
+              ✨ <strong>Pedido abençoado!</strong> Que este novo ano traga saúde infinita, paz de espírito, gargalhadas e
+              que todos os sonhos do seu coração se realizem. Te amo mais do que as palavras podem expressar! 💖
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CARTA DE HOMENAGEM -->
+      <section class="letter-section">
+        <div class="letter-card">
+          <div class="letter-card__stamp">💌</div>
+          <h3 class="letter-card__title">Uma Carta Para Minha Rainha</h3>
+
+          <div class="letter-card__body">
+            <p class="letter-p">
+              <strong>Mãe querida,</strong>
+            </p>
+            <p class="letter-p">
+              Hoje é um dos dias mais especiais do ano, porque é o dia em que o mundo foi presenteado com a sua existência.
+              Ter você como mãe é o maior privilégio e a maior bênção que Deus poderia ter me concedido.
+            </p>
+            <p class="letter-p">
+              Obrigado por cada abraço acolhedor nos momentos difíceis, por cada palavra de incentivo, por cada oração e
+              por sua dedicação incansável. A sua força me inspira, o seu sorriso ilumina qualquer ambiente e a sua doçura
+              enche o meu coração de orgulho todos os dias.
+            </p>
+            <p class="letter-p">
+              Que a sua caminhada seja sempre repleta de saúde, paz, alegria e momentos inesquecíveis ao lado de quem você
+              ama. Que nunca lhe falte motivos para sorrir e que Deus continue te protegendo em cada passo.
+            </p>
+            <p class="letter-p letter-highlight">
+              Feliz Aniversário, minha mãe amada! Você é o meu maior exemplo e a pessoa mais importante da minha vida.
+            </p>
+
+            <div class="letter-card__signature">
+              <p class="signature-intro">Com todo o meu amor, respeito e gratidão,</p>
+              <p class="signature-name">Seu filho, Emílio Manoel ❤️</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CARDS DE QUALIDADES: POR QUE VOCÊ É TÃO ESPECIAL -->
+      <section class="qualities-section">
+        <div class="section-header">
+          <h3 class="section-title">O Que Torna Você Incomparável</h3>
+          <p class="section-subtitle">Pequenos lembretes de tudo que admiramos em você todos os dias</p>
+        </div>
+
+        <div class="qualities-grid">
+          <div class="quality-card">
+            <div class="quality-card__icon">💖</div>
+            <h4 class="quality-card__title">Coração Acolhedor</h4>
+            <p class="quality-card__text">
+              O seu abraço tem o dom de curar qualquer tristeza e trazer a paz mais pura que existe no mundo.
+            </p>
+          </div>
+
+          <div class="quality-card">
+            <div class="quality-card__icon">🌟</div>
+            <h4 class="quality-card__title">Sorriso Iluminado</h4>
+            <p class="quality-card__text">
+              A sua risada contagia a todos ao seu redor e transforma qualquer dia comum em uma verdadeira festa.
+            </p>
+          </div>
+
+          <div class="quality-card">
+            <div class="quality-card__icon">👑</div>
+            <h4 class="quality-card__title">Força Admirável</h4>
+            <p class="quality-card__text">
+              Uma mulher guerreira, digna, batalhadora e incansável, que nos ensina a vencer com amor e honestidade.
+            </p>
+          </div>
+
+          <div class="quality-card">
+            <div class="quality-card__icon">🌸</div>
+            <h4 class="quality-card__title">Doçura e Sabedoria</h4>
+            <p class="quality-card__text">
+              Sempre com o conselho certo na hora certa, guiando com carinho, paciência e proteção infinita.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- GALERIA DE FOTOS COM MENSAGENS -->
+      <section id="gallery" class="gallery">
+        <div class="gallery__header">
+          <span class="gallery__tag">📸 NOSSO ÁLBUM DE AMOR</span>
+          <h2 class="gallery__title">Momentos Inesquecíveis</h2>
+          <p class="gallery__subtitle">
+            Cada foto carrega uma história, um sorriso e um pedaço eterno do amor que nos une.
+          </p>
+          <div class="gallery__filter" id="galleryFilter">
+            <button class="filter-btn active" data-filter="all">Todas as Fotos (24)</button>
+            <button class="filter-btn" data-filter="aniversario">Aniversários 🎂</button>
+            <button class="filter-btn" data-filter="viagens">Viagens & Passeios 🏖️</button>
+            <button class="filter-btn" data-filter="familia">Família & Sorrisos 💖</button>
+          </div>
+        </div>
+
+        <div class="gallery__grid" id="galleryGrid">
+          <!-- As fotos e legendas serão geradas dinamicamente pelo JavaScript -->
+        </div>
+
+        <footer class="gallery__footer">
+          <div class="footer-cake">🎂 🥂 💐</div>
+          <p class="footer-main">
+            Feito com todo o coração por <strong>Emílio Manoel</strong> para a mãe mais amada do universo,
+            <strong>Maristela</strong>.
+          </p>
+          <p class="footer-sub">Feliz Aniversário hoje, amanhã e por todos os dias da sua vida! ❤️</p>
+        </footer>
+      </section>
+    </main>
+
+    <!-- LIGHTBOX (VISUALIZADOR DE FOTO EM TELA CHEIA) -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visualizador de Foto">
+      <button class="lightbox__btn lightbox__btn--close" id="lightboxClose" aria-label="Fechar Foto">✕</button>
+
+      <button class="lightbox__nav lightbox__nav--prev" id="lightboxPrev" aria-label="Foto Anterior">
+        <span>‹</span>
+      </button>
+
+      <button class="lightbox__nav lightbox__nav--next" id="lightboxNext" aria-label="Próxima Foto">
+        <span>›</span>
+      </button>
+
+      <div class="lightbox__content">
+        <div class="lightbox__img-container">
+          <img class="lightbox__img" id="lightboxImg" src="" alt="" />
+        </div>
+
+        <div class="lightbox__info">
+          <div class="lightbox__header-row">
+            <span class="lightbox__counter" id="lightboxCounter">1 / 24</span>
+            <button class="lightbox__like" id="lightboxLike" title="Curtir esta lembrança">
+              <span class="like-heart">❤️</span>
+              <span class="like-count" id="likeCount">Amei!</span>
+            </button>
+          </div>
+          <h4 class="lightbox__title" id="lightboxTitle">Título da Foto</h4>
+          <p class="lightbox__caption" id="lightboxCaption">Mensagem especial da foto</p>
+        </div>
       </div>
+    </div>
 
-      <div class="gallery__empty" id="galleryEmpty">
-        <div class="gallery__empty-icon">📸</div>
-        <p class="gallery__empty-text">As fotos serão adicionadas em breve!</p>
-        <p class="gallery__empty-hint">Adicione imagens na pasta <code>src/assets/</code> e configure no código</p>
-      </div>
-
-      <footer class="gallery__footer">
-        <p>Feito com <span class="heart-beat">❤️</span> para você, mãe!</p>
-      </footer>
-    </section>
-
+    <!-- SCRIPTS -->
     <script src="src/scripts/scripts.js" defer></script>
   </body>
 </html>
